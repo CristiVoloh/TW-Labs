@@ -1,0 +1,5 @@
+Lab 3:
+ChangeTheme color in JS, open Login and Register forms (popups).
+
+Lab4:
+JQuery validation, store user input from a form in php variables.
