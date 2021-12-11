@@ -1,7 +1,5 @@
 <?php session_start(); ?>
 
-<!-- https://webdamn.com/hospital-management-system-with-php-mysql/ -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +16,6 @@
 
 	<div class="wrapper">
 	    <div class="sidebar" data-aos="fade-right">
-
 	    	<div class="logo">
 				<img src="src/img/logos/HASlogo.png" alt="HASlogo">
 				<div class="service-name">
@@ -27,24 +24,21 @@
 					<p>Hospital Appointment System</p>
 				</div>
 			</div>
-
 			<div class="userSection" style="display: <?php if(isset($_SESSION['displayUser'])) {echo $_SESSION['displayUser'];} else {echo 'none';}?> ">
 				<img src="src/img/logos/user.png" alt="">
 				<h2> <?php if(isset($_SESSION['name'])) {echo $_SESSION['name'];} else {echo 'none';}?> </h2>
 				<p> <?php if(isset($_SESSION['email'])) {echo $_SESSION['email'];} else {echo 'none';}?> </p>
 			</div>
-
 	    	<div class="header-button-section">
 	    		<button class="primary-button">Book Appointment</button>
 	    	</div>
-			
 	    	<ul>
 	    		<li><a href="home.php"><i class="fas fa-home"></i>Home</a></li>
 				<?php if(isset($_SESSION['name'])) { ?>
 	    			<li><a href="#"><i class="fas fa-house-user"></i>Personal cabinet</a></li>
 				<?php } ?>
-	    		<li><a href="hospitals.php"><i class="fas fa-hospital-alt"></i>Hospitals</a></li>
-	    		<li><a href="#" id="openNewsPopup"><i class="fas fa-newspaper"></i>Subscribe to news</a></li>
+				<li><a href="hospitals.php"><i class="fas fa-hospital-alt"></i>Hospitals</a></li>
+	    		<li><a href="#"><i class="fas fa-newspaper"></i>Subscribe to news</a></li>
 	    		<li><a href="#"><i class="fas fa-question-circle"></i>About</a></li>
 	    		<li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
 	    		<li><a href="#"><i class="fas fa-envelope"></i>Contact</a></li>
@@ -73,6 +67,26 @@
 	    			<input type="text" placeholder="Search..">
 	    		</div>
 
+	    		<div class="service-select nav-element">
+				  <select>
+				    <option value="0">Category</option>
+				    <option value="1">cat1</option>
+				    <option value="2">cat2</option>
+				    <option value="3">cat3</option>
+				    <option value="4">cat4</option>
+				  </select>
+				</div>
+
+				<div class="hospital-select nav-element">
+				  <select>
+				    <option value="0">Department</option>
+				    <option value="1">cat1</option>
+				    <option value="2">cat2</option>
+				    <option value="3">cat3</option>
+				    <option value="4">cat4</option>
+				  </select>
+				</div>
+
 				<div class="search-button nav-element">
 					<button class="primary-button">Search</button>
 				</div>
@@ -88,23 +102,33 @@
 
 	    	</div>
 
-			<div class="welcome-section">
-				<div class="title-section" data-aos="fade-right">
-					<h2>Welcome to HAS</h2>
-					<p>Hospital Appointment System</p>
-					<span>Make you appointment proccess easier with HAS</span>
-				</div>
-				<div class="banner-section" data-aos="fade-left">
-					<img src="src/img/banners/main-banner.png" alt="" id="banner1" width="650px" height="400px">
-				</div>
-			</div>
+	    	<div class="hospitals">
+				<?php 
+					include("src/php/server.php"); 
+					$sql = "SELECT * FROM hospitals";
+					$result = mysqli_query($db, $sql);
+				?>
 
-			<div class="welcome-buttons">
-				<button class="get-started-btn primary-button" data-aos="fade-right">Get started</button>
+				<div class="general-information-section" data-aos="fade-up">
+					<p>Number of hospitals: <?php echo $result->num_rows; ?></p>
+				</div>
 
-				<button onclick="window.location.href='/hospitals/registration-page.php'" class="register-btn primary-button" data-aos="fade-left"
-					style="display: <?php if(isset($_SESSION['displayLinks'])) {echo 'none';} else {echo 'inline-block';} ?>">Register</button>
-			</div>
+				<?php while($row = $result->fetch_assoc()): ?>
+					<div class="hospital"  data-aos="fade-up">
+						<img class="hospital-image" src="src/img/hospitals/maket.png" alt="image">
+						<div class="hospital-description">
+							<div class="hospital-name">
+								<h2> <i class="fas fa-address-card"></i> <?php echo $row['name']; ?> </h2>
+							</div>	
+							<div class="hospital-address">
+								<h3> <i class="fas fa-map-marker-alt"></i> <?php echo $row['address']; ?> </h3>
+							</div>
+						</div>
+					</div>
+				<?php endwhile; ?>
+
+	    	</div>
+
 
 	    </div>
 

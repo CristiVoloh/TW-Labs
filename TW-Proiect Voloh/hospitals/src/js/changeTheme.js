@@ -14,12 +14,14 @@ checkbox.addEventListener('change', () => {
         document.documentElement.style.setProperty('--light-blue', light_violet);
         document.documentElement.style.setProperty('--ligh-transparent-blue', light_transparent_violet);
         document.documentElement.style.setProperty('--popup-background-blue', popup);
+        document.getElementById('banner1').src="src/img/banners/main-banner2.png";
     } else {
         document.documentElement.style.setProperty('--dark-blue', '#105f83');
         document.documentElement.style.setProperty('--dark-light-blue', '#1b76a3');
         document.documentElement.style.setProperty('--light-blue', '#24b0f3');
         document.documentElement.style.setProperty('--ligh-transparent-blue', '#d1eaf9b3');
         document.documentElement.style.setProperty('--popup-background-blue', '#0219309f');
+        document.getElementById('banner1').src="src/img/banners/main-banner.png";
     }
 });
 

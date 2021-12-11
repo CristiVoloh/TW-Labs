@@ -1,5 +1,15 @@
 .error {
+    display: block;
     color: red;
     font-size: 13px;
-    text-align: left;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.success {
+    display: block;
+    color: rgb(9, 202, 9);
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-align: center;
 }
